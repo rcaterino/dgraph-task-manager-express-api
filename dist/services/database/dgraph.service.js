@@ -22,28 +22,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.app = void 0;
-const express_1 = __importStar(require("express"));
+exports.fetchGraphQL = void 0;
+/*
+This is an example snippet - you should consider tailoring it
+to your service.
+*/
 const dotenv = __importStar(require("dotenv"));
-const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-const swagger_1 = require("./config/swagger/swagger");
-const cors_middleware_1 = require("./middlewares/cors.middleware");
-const tasks_routes_1 = require("./routes/tasks.routes");
 dotenv.config();
-exports.app = (0, express_1.default)();
-exports.app.use((0, express_1.json)());
-exports.app.disable('x-powered-by');
-exports.app.use((0, cors_middleware_1.corsMiddleware)());
-const PORT = process.env.PORT || 3000;
-exports.app.get('/', (req, res) => {
-    res.send('¡Hola, mundo desde tu API!');
-});
-exports.app.use('/api/v1/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerDocs, { explorer: true }));
-exports.app.use('/api/v1/tasks', tasks_routes_1.tasksRouter);
-exports.app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}/api/v1/docs`);
-});
+async function fetchGraphQL(operationsDoc, operationName, variables) {
+    const result = await fetch(process.env.DGRAPH_ENDPOINT || "", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Auth-Token": process.env.X_AUTH_TOKEN || "",
+        },
+        body: JSON.stringify({
+            query: operationsDoc,
+            variables: variables,
+            operationName: operationName
+        })
+    });
+    return await result.json();
+}
+exports.fetchGraphQL = fetchGraphQL;

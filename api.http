@@ -1,0 +1,31 @@
+### Esta es una API REST de películas y podemos probar los endpoint en este archivo .http gracias a la extensión de VSCode REST Client.
+### Para esto creamos un archivo .http y escribimos los endpoint que se encuentran que queremos probar.
+
+### Recuperar todas las peliculas
+GET http://localhost:4000/api/tasks
+
+### Recuperar una pelicula por ID
+GET http://localhost:4000/api/tasks/id
+
+### Recuperar todas las peliculas por un género
+GET http://localhost:4000/api/tasks?status=DOME
+
+### Crear una película
+POST http://localhost:4000/api/tasks
+Content-Type: application/json
+
+{
+    "label": "Tarea de prueba",
+    "scheduleAt": "2021-05-05T00:00:00.000Z",
+}
+
+### Actualizar una película
+PATCH http://localhost:4000/api/tasks/id
+Content-Type: application/json
+
+{
+    "year": 1995
+}
+
+### Borrar una película
+DELETE http://localhost:8080/api/movies/65609c07211388461d77cbef
