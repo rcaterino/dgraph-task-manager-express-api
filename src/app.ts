@@ -1,10 +1,12 @@
 import express, { Request, Response, json } from 'express';
 import * as dotenv from 'dotenv';
+
 import { corsMiddleware } from './middlewares/cors.middleware';
+import { tasksRouter } from './routes/tasks.routes';
 
 dotenv.config();
 
-const app = express();
+export const app = express();
 
 app.use(json());
 app.disable('x-powered-by');
@@ -15,6 +17,8 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (req: Request, res: Response) => {
   res.send('¡Hola, mundo desde tu API!');
 });
+
+app.use('/api/v1/tasks', tasksRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
