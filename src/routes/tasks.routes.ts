@@ -1,15 +1,21 @@
 import { Router } from "express";
 import { TasksController } from "../controllers/tasks.controllers";
+import { TasksValidator } from "../validators/tasks.validators";
 
+// Initialize a new Express Router instance
 export const tasksRouter = Router();
 
-
+// Endpoint to retrieve all tasks
 tasksRouter.get('/', TasksController.getAllTasks);
 
-// todo tasksRouter.get('/:id', TasksController.getTaskById);
+// Endpoint to retrieve a specific task by ID
+tasksRouter.get('/:id', TasksValidator.idValidator, TasksController.getTaskById);
 
-// todo tasksRouter.post('/', TasksController.createTask);
+// Endpoint to create a new task
+tasksRouter.post('/', TasksValidator.createTaskValidations, TasksController.createTask);
 
-// todo tasksRouter.patch('/:id', TasksController.updateTask);
+// Endpoint to update a specific task by ID
+tasksRouter.patch('/:id', TasksValidator.idValidator, TasksValidator.updateTaskValidations, TasksController.updateTaskById);
 
-// todo tasksRouter.delete('/:id', TasksController.deleteTask);
+// Endpoint to delete a specific task by ID
+tasksRouter.delete('/:id', TasksValidator.idValidator, TasksController.deleteTaskById);
