@@ -26,3 +26,4 @@ export async function fetchGraphQL(operationsDoc:any, operationName: any, variab
   return await result.json();
 }
 
+
