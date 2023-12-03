@@ -85,8 +85,10 @@ export class TaskModel {
   static async createTask(taskData: TaskRequestBody) {
 
     const { label, scheduledAt } = taskData;
-    const createdAt = new Date().toISOString();
-
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Set the current date to midnight
+    const createdAt = now.toISOString();
+    console.log("createdAt", createdAt);
     const operationsDoc =
       `
           mutation CreateNewTask($label: String!, $createdAt: DateTime!, $scheduledAt: DateTime!) {

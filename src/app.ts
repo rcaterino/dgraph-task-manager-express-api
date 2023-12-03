@@ -1,8 +1,11 @@
 import express, { Request, Response, json } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { specs } from './swaggerConfig';
 import * as dotenv from 'dotenv';
 
 import { corsMiddleware } from './middlewares/cors.middleware';
 import { tasksRouter } from './routes/tasks.routes';
+
 
 dotenv.config();
 
@@ -23,6 +26,9 @@ app.use(corsMiddleware());
 // Set the port for the server to listen on
 const PORT = process.env.PORT || 3000;
 
+// Swagger endpoint for API documentation and specification output in JSON format
+app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(specs));
+
 // Define a simple route for the root endpoint
 app.get('/', (req: Request, res: Response) => {
   res.send('¡Hola, mundo desde tu API!');
@@ -33,5 +39,5 @@ app.use('/api/v1/tasks', tasksRouter);
 
 // Start the server and listen on the defined port
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`); // Log the server start with the specified port
+  console.log(`Servidor corriendo en http://localhost:${PORT}/api/v1/documentation`); // Log the server start with the specified port
 });
