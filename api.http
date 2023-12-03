@@ -5,7 +5,7 @@
 GET http://localhost:4000/api/v1/tasks
 
 ### Recuperar una tarea por ID
-GET http://localhost:4000/api/v1/tasks/0x1a504f9494
+GET http://localhost:4000/api/v1/tasks/0x1a50518c73
 
 ### Crear una nueva tarea
 POST http://localhost:4000/api/v1/tasks
@@ -18,11 +18,11 @@ Content-Type: application/json
 
 
 ### Actualizar una tarea
-PATCH http://localhost:4000/api/v1/tasks/0x1a504f94c6
+PATCH http://localhost:4000/api/v1/tasks/0x1a50547ffe
 Content-Type: application/json
 
 {
-  "status": "CANCELLED"
+  "status": "DONE"
 }
 
 ### Borrar una tarea

@@ -1,4 +1,5 @@
 import { body, param } from 'express-validator';
+import { TaskStatus } from '../types/tasks.interface';
 
 export class TasksValidator {
   // Validation rules for creating a new task
@@ -13,6 +14,7 @@ export class TasksValidator {
       .custom((value) => {
         const scheduledDate = new Date(value);
         const now = new Date();
+        now.setHours(0, 0, 0, 0); // Set the current date to midnight
         if (scheduledDate < now) {
           throw new Error('scheduledAt cannot be earlier than the current date');
         }
@@ -42,7 +44,7 @@ export class TasksValidator {
     // Validation for optional status field to be either 'DONE' or 'CANCELLED' if provided
     body('status')
       .optional()
-      .isIn(['DONE', 'CANCELLED'])
+      .isIn([TaskStatus.DONE, TaskStatus.CANCELLED])
       .withMessage(value => `Invalid status: ${value}. Status can only be updated to DONE or CANCELLED`)
       .isString()
       .withMessage('Status must be a string'),
