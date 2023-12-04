@@ -1,6 +1,6 @@
 # Task Management API :clipboard:
 
-Esta API RESTful se encarga de gestionar las tareas utilizando Dgraph como base de datos. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en las tareas y aplica reglas de negocio para mantener la consistencia de los datos.
+Esta API RESTful fue desarrollada para ser presentada en una prueba técnica y tanto las reglas de negocio como la estructura de los datos fueron definidos en dicha prueba. Esta API encarga de gestionar las tareas utilizando Dgraph como base de datos. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en las tareas y aplica reglas de negocio para mantener la consistencia de los datos.
 
 ## Características principales
 
