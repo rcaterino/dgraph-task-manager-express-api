@@ -134,7 +134,7 @@ export class TaskModel {
     }
 
     // Define the base mutation
-    let operationsDoc = `
+    const operationsDoc = `
   mutation UpdateTaskById($taskId: ID!, $label: String, $scheduledAt: DateTime, $status: TaskStatus, $completedAt: DateTime, $cancelledAt: DateTime) {
     updateTask(input: {filter: {id: [$taskId]}, set: {label: $label, scheduledAt: $scheduledAt, status: $status, completedAt: $completedAt, cancelledAt: $cancelledAt}}) {
       task {
@@ -163,7 +163,7 @@ export class TaskModel {
     let variables: TaskRequestBody & { taskId: Task['id'], completedAt?: Task["completedAt"], cancelledAt?: Task["cancelledAt"] } = { taskId, ...taskUpdates };
     console.log("variables definidas", variables);
     // Remove undefined variables
-    variables = Object.fromEntries(Object.entries(variables).filter(([_, v]) => v != null)) as TaskRequestBody & { taskId: Task['id'], completedAt?: Task["completedAt"], cancelledAt?: Task["cancelledAt"] };
+    variables = Object.fromEntries(Object.entries(variables).filter(([, v]) => v != null)) as TaskRequestBody & { taskId: Task['id'], completedAt?: Task["completedAt"], cancelledAt?: Task["cancelledAt"] };
     console.log("variables filtradas", variables);
     // Execute the mutation
     const { errors, data } = await fetchGraphQL(operationsDoc, "UpdateTaskById", variables);

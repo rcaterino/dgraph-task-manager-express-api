@@ -18,6 +18,7 @@ interface Task {
 
 // Interface defining the structure of a Task Request Body used for updating tasks
 interface TaskRequestBody {
+  [key: string]: unknown;
   id?: Task['id'];
   label?: Task['label'];
   scheduledAt?: Task['scheduledAt'];

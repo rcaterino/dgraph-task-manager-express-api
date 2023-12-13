@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export async function fetchGraphQL(operationsDoc:any, operationName: any, variables: any) {
+export async function fetchGraphQL(operationsDoc:string, operationName: string, variables: Record<string, unknown>) {
   const result = await fetch(
     process.env.DGRAPH_ENDPOINT || "",
     {

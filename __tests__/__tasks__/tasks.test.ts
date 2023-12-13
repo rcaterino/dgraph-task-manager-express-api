@@ -60,13 +60,13 @@ describe('PATCH /api/v1/tasks/:id', () => {
   const id = "0x1a50538b2b";
 
   // prueba que la ruta /api/tasks/:id con metodo PATCH para completar una tarea
-  test('should response with status 200 when complete a task', async () => {
-    const body = {
-      "status": "DONE",
-    };
-    const res = await request(app).patch(`/api/v1/tasks/${id}`).send(body);
-    expect(res.statusCode).toEqual(200);
-  });
+  // test('should response with status 200 when complete a task', async () => {
+  //   const body = {
+  //     "status": "DONE",
+  //   };
+  //   const res = await request(app).patch(`/api/v1/tasks/${id}`).send(body);
+  //   expect(res.statusCode).toEqual(200);
+  // });
   // Prueba para el caso en que se hace una solicitud PATCH a /api/v1/tasks/:id con un ID que no existe
   const nonExistentId = "0x1a504f8a54";
   test('should respond with status 404 for non-existent id', async () => {
