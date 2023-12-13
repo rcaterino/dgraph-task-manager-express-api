@@ -4,7 +4,7 @@
   "description": "Restfull API with Express in typescript to serve data to frontend from Dgraph database",
   "main": "index.js",
   "scripts": {
-    "slint": "eslint . --ext .ts",
+    "eslint": "eslint . --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
