@@ -1,0 +1,21 @@
+name: Deplyment Pipeline for the Task Manager API
+
+on:
+  push:
+    branches:
+      - master
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.9.0
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run eslint
